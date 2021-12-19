@@ -1,4 +1,5 @@
 <script>
+	import { fade } from 'svelte/transition';
   let tasks = [
     {
       name: "Task",
@@ -28,8 +29,8 @@
 <main>
   <h3>MyTodo </h3>
   <ul>
-    {#each tasks as task}
-      <li>
+    {#each tasks as task (task.id)}
+      <li transition:fade >
         <input type="checkbox" bind:checked={task.complete} />
         <span class:checked={task.complete}>{task.name}</span>
         <button on:click={deleteTask(task.id)}>X</button>
